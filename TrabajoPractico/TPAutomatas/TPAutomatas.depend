@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1567387821 source:c:\users\christian\documents\utn\2∫ a—o\sintaxis y semantica de los lenguajes\tp\trabajopractico\tpautomatas\main.c
+	<stdio.h>
+
+1567386701 source:c:\users\christian\documents\utn\2∫ a—o\sintaxis y semantica de los lenguajes\tp\trabajopractico\tpautomatas\gzl.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

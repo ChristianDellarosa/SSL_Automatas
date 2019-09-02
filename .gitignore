@@ -1,0 +1,16 @@
+##Ignore
+*.bin
+*.idea
+*.build*
+*.xml
+*.lock
+*out/*
+*debug.log
+*/out/
+*/build/
+*debug.log
+*/.log*
+*/.exe*
+*/.cache*
+*/.cmake*
+*/.txt*

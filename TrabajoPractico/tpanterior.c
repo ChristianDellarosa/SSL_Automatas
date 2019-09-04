@@ -111,7 +111,7 @@ int esEstadoFinal(int estadoActual){
 	else return 0;
 }
 
-int main(void) {
+int pepe(void) {
     /*
     ER [01]\.[0-9]?|[01]*B Centinela: #
 	char CeroUno[2] = { '0', '1' };

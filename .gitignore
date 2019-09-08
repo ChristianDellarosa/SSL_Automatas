@@ -14,3 +14,7 @@
 */.cache*
 */.cmake*
 */.txt*
+/TrabajoPractico/bin/*
+/TrabajoPractico/obj/*
+/TrabajoPractico/TPAutomatas.depend*
+/*tpAutomatas.layout

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 /*MI ER: ER [0-9]+F|[0-9]\.[01]{2} Centinela: #*/
-
 void clean(char *);
 int esCentinela(char);
 int esA(char);
@@ -109,7 +108,7 @@ int esA(char c) { /*2,3,4,5,6,7,8,9*/
         }
 }
 
-int esB(char c){
+int esB(char c) { /*0,1*/
     switch(c)
     {
        case '0':
@@ -154,10 +153,10 @@ int analizarCaracter(char c, int tabla [7][4], int estadoActual) {
 		res = tabla[estadoActual][2];
 	} else if (esB(c)) {
 		res = tabla[estadoActual][3];
-	} else if (esCentinela(c)) /*volver al estado 0*/ {
+	} else if (esCentinela(c)) {
 		res = 0;
 	} else if (esfdt(c)) {
-		res = 0;//res = tabla[6][estadoActual];
+		res = 0;
 	} else  {
 		res = tabla[6][0];
 	}
@@ -175,7 +174,6 @@ void imprimirPalabra(char cadena[100],int posNuevaPalabra, int * nroPalabra){
     }
         printf("\n");
 }
-
 
 void imprimirMatriz(int matriz[7][4]) {
 	int i,j;

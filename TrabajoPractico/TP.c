@@ -11,8 +11,9 @@ int esPunto(char);
 int esF(char);
 int esfdt(char);
 int esEstadoFinal(int);
-int analizarCaracter(char, int tabla[7][5], int);
+int analizarCaracter(char, int tabla[7][4], int);
 void imprimirPalabra(char *,int , int *);
+void imprimirMatriz(int matriz[7][4]);
 
 int main(void) {
     char cadena[100];
@@ -20,22 +21,22 @@ int main(void) {
     int nroPalabra = 1;
     int i=0;
 	int posNuevaPalabra;
-    int tablaTransicion[7][5] = {
-	{ 0, 1, 8, 8, 1 },
-	{ 1, 2, 5, 3, 2 },
-	{ 2, 2, 5, 8, 2 },
-	{ 3, 8, 8, 8, 4 },
-	{ 4, 8, 8, 8, 5 },
-	{ 5, 8, 8, 8, 8 },
-	{ 8, 8, 8, 8, 8 }
+    int tablaTransicion[7][4] = {
+	{ 1, 6, 6, 1 },
+	{ 2, 5, 3, 2 },
+	{ 2, 5, 6, 2 },
+	{ 6, 6, 6, 4 },
+	{ 6, 6, 6, 5 },
+	{ 6, 6, 6, 6 },
+	{ 6, 6, 6, 6 }
 	};
-	int estadoInicial = tablaTransicion[0][0];
+	int estadoInicial = 0;
 	int estadoActual=estadoInicial;
 
   do{
     clean(cadena);
     i=0;
-    estadoInicial = tablaTransicion[0][0];
+    estadoInicial = 0;
     estadoActual=estadoInicial;
     nroPalabra=1;
     printf("\n ** Ingrese cadena: ");
@@ -45,7 +46,7 @@ int main(void) {
             posNuevaPalabra = i;
         }
         estadoActual = analizarCaracter(cadena[i],tablaTransicion,estadoActual);
-        if (esEstadoFinal(estadoActual)){
+        if(esEstadoFinal(estadoActual)&&((cadena[i+1]=='#')||(cadena[i+1]=='\0'))) {
             imprimirPalabra(cadena,posNuevaPalabra, &nroPalabra);
         }
         i++;
@@ -54,7 +55,6 @@ int main(void) {
     scanf("%d", &continuar);
 	}while ( continuar == 1);
 }
-
 
 int esfdt(char c) {
 	if (c == '\0'){
@@ -66,7 +66,7 @@ int esfdt(char c) {
 void clean( char *cadena ){
 	int i;
 	for( i=0; i<strlen(cadena);i++){
-			cadena[i]='\0';
+		cadena[i]='\0';
 	}
 }
 
@@ -144,22 +144,22 @@ int esEstadoFinal(int estadoActual){
      return 0;
 }
 
-int analizarCaracter(char c, int tabla [7][5], int estadoActual) {
+int analizarCaracter(char c, int tabla [7][4], int estadoActual) {
 	int res;
 	if (esA(c)) {
-		res = tabla[estadoActual][1];
+		res = tabla[estadoActual][0];
 	} else if (esF(c)) {
-		res = tabla[estadoActual][2];
+		res = tabla[estadoActual][1];
 	} else if (esPunto(c)) {
-		res = tabla[estadoActual][3];
+		res = tabla[estadoActual][2];
 	} else if (esB(c)) {
-		res = tabla[estadoActual][4];
+		res = tabla[estadoActual][3];
 	} else if (esCentinela(c)) /*volver al estado 0*/ {
 		res = 0;
 	} else if (esfdt(c)) {
-		res = tabla[estadoActual][6];
-	} else  { /*no es nada*/
-		res = tabla[estadoActual][6];
+		res = 0;//res = tabla[6][estadoActual];
+	} else  {
+		res = tabla[6][0];
 	}
 	return res;
 }
@@ -176,3 +176,14 @@ void imprimirPalabra(char cadena[100],int posNuevaPalabra, int * nroPalabra){
         printf("\n");
 }
 
+
+void imprimirMatriz(int matriz[7][4]) {
+	int i,j;
+
+	for(i = 0; i < 7; i++) {
+		for(j = 0; j < 4; j++) {
+			printf("%d ", matriz[i][j]);
+		}
+		printf("\n");
+	}
+}

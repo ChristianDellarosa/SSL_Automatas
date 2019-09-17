@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 /*MI ER: ER [0-9]+F|[0-9]\.[01]{2} Centinela: #*/
-void clean(char *);
+void clear(char *);
 int esCentinela(char);
 int esA(char);
 int esB(char);
@@ -33,7 +33,7 @@ int main(void) {
 	int estadoActual=estadoInicial;
 
   do{
-    clean(cadena);
+    clear(cadena);
     i=0;
     estadoInicial = 0;
     estadoActual=estadoInicial;
@@ -62,7 +62,7 @@ int esfdt(char c) {
     return 0;
 }
 
-void clean( char *cadena ){
+void clear( char *cadena ){
 	int i;
 	for( i=0; i<strlen(cadena);i++){
 		cadena[i]='\0';
@@ -77,35 +77,10 @@ int esCentinela(char c) {
 }
 
 int esA(char c) { /*2,3,4,5,6,7,8,9*/
-    switch(c)
-    {
-        case '2':
-            return 1;
-            break;
-        case '3':
-            return 1;
-            break;
-        case '4':
-            return 1;
-            break;
-        case '5':
-            return 1;
-            break;
-        case '6':
-            return 1;
-            break;
-        case '7':
-            return 1;
-            break;
-        case '8':
-            return 1;
-            break;
-        case '9':
-            return 1;
-            break;
-        default:
-            return 0;
-        }
+	if((c >= 50)&&(c <= 57)){
+		return 1;
+	}
+	return 0;
 }
 
 int esB(char c) { /*0,1*/
@@ -177,7 +152,6 @@ void imprimirPalabra(char cadena[100],int posNuevaPalabra, int * nroPalabra){
 
 void imprimirMatriz(int matriz[7][4]) {
 	int i,j;
-
 	for(i = 0; i < 7; i++) {
 		for(j = 0; j < 4; j++) {
 			printf("%d ", matriz[i][j]);
